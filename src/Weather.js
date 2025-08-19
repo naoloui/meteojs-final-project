@@ -22,14 +22,18 @@ export default function Weather(props) {
     });
   }
 
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     search();
   }
 
   function search() {
-    const apiKey = "3c949ba49d38be2487ee278e0d2d4059";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const apiKey = "3bb429560a4tfe3ecf96fae66oed5d7f";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
 
@@ -57,7 +61,7 @@ export default function Weather(props) {
           </div>
         </form>
         <WeatherInfo data={weatherData} />
-        <WeatherForecast />
+        <WeatherForecast coordinates={weatherData.coord} />
       </div>
     );
   } else {
